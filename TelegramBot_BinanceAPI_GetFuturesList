@@ -1,0 +1,51 @@
+
+import telebot
+from telebot import types
+from binance.client import Client
+import time
+
+
+api_key = '#'
+api_secret = '#'
+API_TOKEN = '#'
+bot = telebot.TeleBot(API_TOKEN)
+client = Client(api_key, api_secret)
+summ=float(0)
+
+@bot.message_handler(commands='start')
+
+def showprice(message):
+    lastresult = 0
+    result = ''
+    uprftall = float(0)
+    smbl = 'a'
+    uprft = 'q'
+    emj = 'a'
+    newresult=' '
+    pamt = 'a'
+    toprint = 'a'
+    rrrrr = 'a'
+    msg = bot.send_message(message.chat.id,'3 sec...')
+    while True:
+        time.sleep(3)
+        uprftall = 0
+        prices = client.futures_position_information()
+        for i in range(len(prices)):
+            pamt = float((prices[i]['positionAmt']))
+            if pamt > float(0):
+                smbl = str((prices[i]['symbol']))
+                mrkpr = str(round(float((prices[i]['markPrice'])),3))
+                uprft = str(round(float((prices[i]['unRealizedProfit'])),3))
+                lqprc = str(round(float((prices[i]['liquidationPrice'])),3))
+                uprftall += float(uprft)
+                emj = 0
+                if float(uprft) > float(0):
+                    emj = '📈'
+                else:
+                    emj = '📉'
+                newresult +=(f'<b>▪️{str(smbl)}</b> ({str(mrkpr)} USDT) \nProfit: {str(uprft)}{str(emj)}\nLiquidation price - {str(lqprc)}\n\n')
+        lastresult = f"{newresult}"
+        newresult = ' '     
+        msg = bot.edit_message_text(lastresult,msg.chat.id, msg.id, parse_mode='HTML')
+
+bot.infinity_polling()
