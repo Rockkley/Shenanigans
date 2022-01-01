@@ -1,0 +1,37 @@
+a=['Broom','Being','Boring','Breeding','Dreaming','Doing','Dancing','Drinking',
+   'Freezing','Falling','Flooding','Fearing','Saying','Sleeping','Standing',
+   'Screaming','Running','Reading','Rolling','Rushing','Twerking','Telling']
+def makerows():
+    while True:
+        rowsize=int(input('Введите размер ячейки / Enter the size of a sublist '))
+        if rowsize>0:
+            subs=0
+            rows=[]
+
+            #Найти кол-во групп / Calculate the amount of sublists
+
+            if len(a)%rowsize>0:
+                subs=(len(a)//rowsize)+1
+            else:
+                subs=len(a)//rowsize
+
+            print('Слов: '+str(len(a))+ ' | | Ячеек:'+ str(subs))
+
+            #Создать найденное кол-во групп / Create the found amount of sublists 
+
+            for i in range(subs):
+                rows.append([])
+            
+            indx=0
+
+            for x in range(len(a)):
+                rows[indx].append(a[x])
+                if len(rows[indx])==rowsize:
+                    indx+=1
+            print('\n'+str(rows)+'\n')
+            
+        else:
+            print(a)
+           
+        
+makerows()
