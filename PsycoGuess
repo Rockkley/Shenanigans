@@ -7,7 +7,7 @@ psyT = [0]
 usersnumbs = []
 
 while True:
-    if not len(usersnumbs)>1:
+    if not len(usersnumbs)>0:
         print('Загадайте двухзначное число (любое!)')
     else:
         print('Загадайте двухзначное число (любое!) Уже загадывали -'+str(usersnumbs))
