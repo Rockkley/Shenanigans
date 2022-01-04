@@ -28,10 +28,10 @@ while True:
             # print('Совпадение!')
         psyT.append(psytanswer)
         print(f'Догадки экстрасенсов: Zero - {psyzanswer}, One - {psyoanswer}, Two - {psytanswer}')
-        users_number = input('Введите двухзначное загаданное число: ')
+        users_number = input('Введите двухзначное загаданное число (больше 10): ')
         while True:
-            if users_number.isdigit() == False or not 3 > len(users_number) > 1:
-                users_number = input('Введите двухзначное(!) загаданное число(!): ')
+            if users_number.isdigit() == False or not 3 > len(users_number) > 1 or int(users_number[0])==0:
+                users_number = input('Введите двухзначное(!) загаданное число(!) больше 10(!): ')
             else:
                 usersnumbs.append(users_number)
                 break
