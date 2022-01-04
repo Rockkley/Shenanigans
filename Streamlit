@@ -1,0 +1,117 @@
+import streamlit as st
+import random
+import time
+
+psyZ = [0]
+psyO = [0]
+psyT = [0]
+usersnumbs = []
+psystates = ['слышит', 'видит', 'знает', 'подозревает', 'чует', 'просёк', 'ведает']
+
+# Initialization
+if 'users_number' not in st.session_state:
+    st.session_state['users_number'] = []
+if 'psyZ' not in st.session_state:
+    st.session_state['psyZ'] = [0]
+if 'psyO' not in st.session_state:
+    st.session_state['psyO'] = [0]
+if 'psyT' not in st.session_state:
+    st.session_state['psyT'] = [0]
+if 'usersnumbs' not in st.session_state:
+    st.session_state['usersnumbs'] = []
+st.session_state
+rnd = random.randint(0, len(psystates) - 1)
+zstatus=psystates[rnd]
+psystates.remove(psystates[rnd])
+
+rnd = random.randint(0, len(psystates) - 1)
+ostatus=psystates[rnd]
+psystates.remove(psystates[rnd])
+
+rnd = random.randint(0, len(psystates) - 1)
+tstatus=psystates[rnd]
+psystates.remove(psystates[rnd])
+
+
+
+st.title("""
+ Звонок экстрасенсам
+""")
+if not len(usersnumbs) > 0:
+    st.subheader('Загадайте двухзначное число (любое!), а наши экстрасенсы - Zero, One и Two попробуют его угадать.')
+else:
+    st.subheader('Загадайте двухзначное число (любое!), а наши экстрасенсы - Zero, One и Two попробуют его угадать.')
+    st.write('*Вы уже загадывали ' + str(usersnumbs)[1:-1]+'*')
+
+
+st.write(f' **РЕЗУЛЬТАТЫ**\n')
+st.write(f'Достоверность Zero: {str(psyZ[0])}, *история догадок - {str(st.session_state.psyZ[1::])}\n*')
+st.write(f'Достоверность One: {str(psyO[0])}, *история догадок - {str(st.session_state.psyO[1::])}\n*')
+st.write(f'Достоверность Two: {str(psyT[0])}, *история догадок - {str(st.session_state.psyT[1::])}\n*')
+
+
+rollit = st.button('Число загадано!')
+
+if rollit:
+
+    # psyZ Загадывает только чётные числа
+    psyzanswer = random.randrange(10, 100, 2)
+    st.session_state.psyZ.append(psyzanswer)
+
+    # psyO Загадывает только нечётные числа
+    psyoanswer = random.randrange(10 // 2, 100 // 2) * 2 + 1
+    st.session_state.psyO.append(psyoanswer)
+
+    # psyT Загадывает только десятки
+    psytanswer = random.randrange(10, 100, 10)
+    while psytanswer == psyzanswer:
+        psytanswer = random.randrange(10, 100, 10)
+        # print('Совпадение!')
+    st.session_state.psyT.append(psytanswer)
+
+    time.sleep(1)
+    st.write(f'Догадки экстрасенсов:')
+    time.sleep(1)
+    st.write(f'Zero {zstatus} - {psyzanswer}')
+    time.sleep(1)
+    st.write(f'One {ostatus} - {psyoanswer}')
+    time.sleep(1)
+    st.write(f'Two {tstatus} - {psytanswer}')
+    time.sleep(1)
+
+
+    # def onent():
+    #
+    #     st.session_state.users_number = ent_numb
+    #     st.session_state.usersnumbs.append(ent_numb)
+    if st.text_input('Введите двухзначное загаданное число: ',max_chars=2,):
+        print(st.text_input)
+
+
+
+    #users_number = input('Введите двухзначное загаданное число: ')
+   # while True:
+  #      if users_number.isdigit() == False or not 3 > len(users_number) > 1:
+   #         users_number = st.text_input('Введите двухзначное(!) загаданное число(!): ',max_chars=2, key=int)
+    #    else:
+     #       usersnumbs.append(users_number)
+      #      break
+
+    # if int(users_number) == psyzanswer:
+    #     psyZ[0] += 1
+    #     psyT[0] -= 1
+    #     psyO[0] -= 1
+    # elif int(users_number) == psyoanswer:
+    #     psyZ[0] -= 1
+    #     psyT[0] -= 1
+    #     psyO[0] += 1
+    # elif int(users_number) == psytanswer:
+    #     psyZ[0] -= 1
+    #     psyT[0] += 1
+    #     psyO[0] -= 1
+    # else:
+    #     psyZ[0] -= 1
+    #     psyT[0] -= 1
+    #     psyO[0] -= 1
+
+
