@@ -44,11 +44,11 @@ psystates.remove(psystates[rnd])
 st.title("""
  Звонок экстрасенсам
 """)
-if not len(usersnumbs) > 0:
+if not len(st.session_state.usersnumbs) > 0:
     st.subheader('Загадайте двухзначное число (любое!), а наши экстрасенсы - Zero, One и Two попробуют его угадать.')
 else:
     st.subheader('Загадайте двухзначное число (любое!), а наши экстрасенсы - Zero, One и Two попробуют его угадать.')
-    st.write('*Вы уже загадывали ' + str(usersnumbs)[1:-1]+'*')
+    st.write('*Вы уже загадывали ' + str(st.session_state.usersnumbs)[1:-1]+'*')
 
 
 st.write(f' **РЕЗУЛЬТАТЫ**\n')
@@ -64,7 +64,7 @@ _opt  = st.button('Число загадано!')
 
 
 if _opt or st.session_state.store:
-    st.session_state.store = True
+    #st.session_state.store = True
     # you write something in it, press enter
 
     # psyZ Загадывает только чётные числа
@@ -101,8 +101,10 @@ if _opt or st.session_state.store:
         st.session_state.usersnumbs.append(st.session_state["ent_numb"])
         st.write(st.session_state["usersnumbs"])
 
+
 # runs through logic and gives points to guesses
         if st.session_state["ent_numb"] == int(st.session_state.psyzanswer):
+
             st.session_state.psyZ[0] += 1
             st.session_state.psyT[0] -= 1
             st.session_state.psyO[0] -= 1
@@ -122,3 +124,4 @@ if _opt or st.session_state.store:
 #reset the user_select key to False: the app will re-render, but no new guess has been made by the user 
         st.session_state["user_select"] = False
         # and then your text from text_input appears on the screen somewhere
+
