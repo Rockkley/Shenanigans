@@ -49,11 +49,11 @@ psystates.remove(psystates[rnd])
 st.title("""
  Звонок экстрасенсам
 """)
-if not len(usersnumbs) > 0:
+if not len(st.session_state.usersnumbs) > 0:
     st.subheader('Загадайте двухзначное число (любое!), а наши экстрасенсы - Zero, One и Two попробуют его угадать.')
 else:
     st.subheader('Загадайте двухзначное число (любое!), а наши экстрасенсы - Zero, One и Two попробуют его угадать.')
-    st.write('*Вы уже загадывали ' + str(usersnumbs)[1:-1]+'*')
+    st.write('*Вы уже загадывали ' + str(st.session_state.usersnumbs)[1:-1]+'*')
 
 
 st.write(f' **РЕЗУЛЬТАТЫ**\n')
@@ -69,7 +69,7 @@ _opt  = st.button('Число загадано!')
 
 
 if _opt or st.session_state.store:
-    st.session_state.store = True
+    #st.session_state.store = True
     # you write something in it, press enter
 
     # psyZ Загадывает только чётные числа
@@ -102,7 +102,7 @@ if _opt or st.session_state.store:
     #st.session_state
 
     if input:
-        st.write("HEY I'M ALIVE")
+        st.session_state.usersnumbs.append(input)
         if int(input) == int(st.session_state.psyzanswer):
             st.session_state.psyZ[0] += 1
             st.session_state.psyT[0] -= 1
@@ -120,4 +120,3 @@ if _opt or st.session_state.store:
             st.session_state.psyT[0] -= 1
             st.session_state.psyO[0] -= 1
 
-        # and then your text from text_input appears on the screen somewhere
