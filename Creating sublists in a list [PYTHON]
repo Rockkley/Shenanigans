@@ -1,37 +1,39 @@
-a=['Broom','Being','Boring','Breeding','Dreaming','Doing','Dancing','Drinking',
-   'Freezing','Falling','Flooding','Fearing','Saying','Sleeping','Standing',
-   'Screaming','Running','Reading','Rolling','Rushing','Twerking','Telling']
-def makerows():
+a = ['Broom', 'Being', 'Boring', 'Breeding', 'Dreaming', 'Doing', 'Dancing', 'Drinking',
+     'Freezing', 'Falling', 'Flooding', 'Fearing', 'Saying', 'Sleeping', 'Standing',
+     'Screaming', 'Running', 'Reading', 'Rolling', 'Rushing', 'Twerking', 'Telling']
+
+
+def make_rows():
     while True:
-        rowsize=int(input('Введите размер ячейки / Enter the size of a sublist '))
-        if rowsize>0:
-            subs=0
-            rows=[]
+        row_size = int(input('Введите размер ячейки / Enter the size of a sublist '))
+        if row_size > 0:
 
-            #Найти кол-во групп / Calculate the amount of sublists
+            rows = []
 
-            if len(a)%rowsize>0:
-                subs=(len(a)//rowsize)+1
+            # Найти кол-во групп / Calculate the amount of sublists
+
+            if len(a) % row_size > 0:
+                subs = (len(a) // row_size) + 1
             else:
-                subs=len(a)//rowsize
+                subs = len(a) // row_size
 
-            print('Слов: '+str(len(a))+ ' | | Ячеек:'+ str(subs))
+            print(f'Слов: {str(len(a))} | | Ячеек: {str(subs)}')
 
-            #Создать найденное кол-во групп / Create the found amount of sublists 
+            # Создать найденное кол-во групп / Create the found amount of sublists
 
             for i in range(subs):
                 rows.append([])
-            
-            indx=0
+
+            index = 0
 
             for x in range(len(a)):
-                rows[indx].append(a[x])
-                if len(rows[indx])==rowsize:
-                    indx+=1
-            print('\n'+str(rows)+'\n')
-            
+                rows[index].append(a[x])
+                if len(rows[index]) == row_size:
+                    index += 1
+            print('\n' + str(rows) + '\n')
+
         else:
             print(a)
-           
-        
-makerows()
+
+
+make_rows()
