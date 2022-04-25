@@ -1,3 +1,5 @@
+
+# List of words 
 a = ['Broom', 'Being', 'Boring', 'Breeding', 'Dreaming', 'Doing', 'Dancing', 'Drinking',
      'Freezing', 'Falling', 'Flooding', 'Fearing', 'Saying', 'Sleeping', 'Standing',
      'Screaming', 'Running', 'Reading', 'Rolling', 'Rushing', 'Twerking', 'Telling']
@@ -36,4 +38,4 @@ def make_rows():
             print(a)
 
 
-make_rows()
+make_rows() # Calling the function
