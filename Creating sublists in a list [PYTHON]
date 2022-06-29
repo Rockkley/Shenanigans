@@ -3,7 +3,7 @@ a = ['Broom', 'Being', 'Boring', 'Breeding', 'Dreaming', 'Doing', 'Dancing', 'Dr
      'Screaming', 'Running', 'Reading', 'Rolling', 'Rushing', 'Twerking', 'Telling']
 
 def make_rows():
-    while True:
+    while True: # For repeating
         row_size = int(input('Введите размер ячейки / Enter the size of a sublist '))
         if row_size > 0:
             # Найти кол-во групп / Calculate the amount of sublists
