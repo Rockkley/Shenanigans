@@ -5,11 +5,11 @@ words = ['Broom', 'Being', 'Boring', 'Breeding', 'Dreaming', 'Doing', 'Dancing',
 def make_rows(row_size: int) -> list:
     row_size = abs(int(row_size)); index = 0; amount = len(words)
     # Найти кол-во групп / Calculate the amount of sublists
-    if row_size>amount: row_size=amount
+    if row_size > amount: row_size=amount
     if row_size > 0:
         subs = (amount // row_size) + 1 if amount % row_size > 0 else amount // row_size
         print(f'Слов: {len(words)} | | Ячеек: {subs}\n')
-        # Создать найденное кол-во групп / Create the found amount of sublists
+        # Создать высчитанное кол-во групп / Create the calculated amount of sublists
         rows = [[] for i in range(subs)]
         for x in range(amount):
             rows[index].append(words[x])
