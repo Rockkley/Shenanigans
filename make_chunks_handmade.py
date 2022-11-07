@@ -2,7 +2,14 @@ words = ['Broom', 'Being', 'Boring', 'Breeding', 'Dreaming', 'Doing', 'Dancing',
      'Freezing', 'Falling', 'Flooding', 'Fearing', 'Saying', 'Sleeping', 'Standing',
      'Screaming', 'Running', 'Reading', 'Rolling', 'Rushing', 'Twerking', 'Telling']
 
-""" SHORT VERSION:
+""" SHORT VERSIONS:
+from itertools import islice
+def make_chunks(lst: list, n: int):
+     iterator = iter(lst)
+     print(list(iter(lambda: list(islice(iterator, n)), [])))
+     
+     OR
+
 def make_chunks(lst: list, n: int):
     result = []
     for i in range(0, len(lst), n):
